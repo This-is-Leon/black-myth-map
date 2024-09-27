@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
-import { useCommonStore } from '@/stores/common'
+import { markers } from './_data'
 
 import MapInstance from '@/logics/MapInstance'
 
 defineOptions({ name: 'MapView' })
 
-const commonStore = useCommonStore()
-
 const mapRef = useTemplateRef('map')
-const mapInstance: MapInstance = new MapInstance(true)
+const mapInstance = new MapInstance(true)
 
 function initMap() {
   if (mapRef.value == null) {
@@ -17,37 +15,22 @@ function initMap() {
     return
   }
   mapInstance.init(mapRef.value)
-
+  // 渲染地图
   mapInstance.renderTile()
-  mapInstance.renderZoomControl()
+  // 缩放按钮
+  //   mapInstance.renderZoomControl()
+  setTimeout(() => {
+    mapInstance.renderMarketLayer(markers.map((item) => item._custom.value) as any)
+  }, 100)
 }
 
 onMounted(() => {
   initMap()
 })
-
-watch(
-  () => commonStore.markers,
-  (val) => {
-    if (mapInstance.map == null) {
-      setTimeout(() => mapInstance.renderMarkers(val), 100)
-      return
-    }
-    mapInstance.renderMarkers(val)
-  },
-  {
-    immediate: true
-  }
-)
-
-watch(
-  () => commonStore.mapId,
-  (id) => mapInstance.renderTile(id + '')
-)
 </script>
 
 <template>
-  <div class="map-wrapper" ref="map"></div>
+    <div class="map-wrapper" ref="map"></div>
 </template>
 
 <style lang="scss" scoped>
