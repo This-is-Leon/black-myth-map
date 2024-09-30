@@ -10,7 +10,7 @@ import type { MarkerItem} from '../types'
 // 缩放等级的限制
 const ZOOM_LIMIT = { maxZoom: 12, minZoom: 9 } as const
 const TILE_UTL_TEMP_01 = 'maps/{id}/{z}/{x}/{y}.webp' as const
-const TILE_UTL_TEMP_02 = 'maps/{id}/{z}/{x}/{y}.webp' as const
+const TILE_UTL_TEMP_02 = 'maps/{id}/{z}/{x}_{y}.webp' as const
 const DEFAULT_MAP_ID = '48' as const
 
 const TileUrlTempMap = new Map([
