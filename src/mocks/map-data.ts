@@ -1,4 +1,4 @@
-export const siblingMaps = [
+export const mapList = [
   {
     id: 48,
     name: '黑神话悟空_黑风山',

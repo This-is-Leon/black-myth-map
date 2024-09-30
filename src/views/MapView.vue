@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
 import { markers } from './_data'
+import { useCommonStore } from '@/stores/common'
 
 import MapInstance from '@/logics/MapInstance'
 
@@ -8,6 +9,8 @@ defineOptions({ name: 'MapView' })
 
 const mapRef = useTemplateRef('map')
 const mapInstance = new MapInstance(true)
+
+const commonStore = useCommonStore()
 
 function initMap() {
   if (mapRef.value == null) {
@@ -27,6 +30,11 @@ function initMap() {
 onMounted(() => {
   initMap()
 })
+
+watch(
+  () => commonStore.mapId,
+  (id) => mapInstance.renderTile(id + '')
+)
 </script>
 
 <template>

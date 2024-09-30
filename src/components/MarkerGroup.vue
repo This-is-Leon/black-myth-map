@@ -1,49 +1,33 @@
 <script setup lang="ts">
-import { useCommonStore } from '@/stores/common'
+import type { CatalogItem } from '@/types'
 
 defineOptions({ name: 'MarkerGroup' })
 
 defineProps<{
   title: string
-  items: Array<{
-    id: number
-    name: string
-    landmarksCount: number
-    iconUrl: string
-    iconSelectedUrl: string
-  }>
+  items: CatalogItem[]
+  selectedIds?: number[]
 }>()
 
-const commonStore = useCommonStore()
-
-function handleClick(id: number) {
-  if (commonStore.selectedMarkCatalogs.includes(id)) {
-    commonStore.removeMarkCatalogAction(id)
-  } else {
-    commonStore.addMarkCatalogAction(id)
-  }
-}
+const emit = defineEmits<{
+  (e: 'select', id: number): void
+}>()
 </script>
 
 <template>
-  <div class="marker-group">
-    <div class="marker-group-title">{{ title }}</div>
-    <div class="marker-group-items">
-      <div
-        v-for="item in items"
-        class="marker-group-item"
-        :key="item.id"
-        :class="{ cur: commonStore.selectedMarkCatalogs.includes(item.id) }"
-        @click="handleClick(item.id)"
-      >
-        <img :src="item.iconUrl" />
-        <span class="gs-ellipsis">
-          {{ item.name }}
-        </span>
-        <span>{{ item.landmarksCount }}</span>
-      </div>
+    <div class="marker-group">
+        <div class="marker-group-title">{{ title }}</div>
+        <div class="marker-group-items">
+            <div v-for="item in items" class="marker-group-item" :key="item.id" :class="{ cur: selectedIds?.includes(item.id) }"
+                @click="emit('select',item.id)">
+                <img :src="item.iconUrl" />
+                <span class="gs-ellipsis">
+                    {{ item.name }}
+                </span>
+                <span>{{ item.landmarksCount }}</span>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <style lang="scss" scoped>

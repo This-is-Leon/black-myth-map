@@ -1,7 +1,7 @@
 import './assets/main.scss'
 
 import App from './App.vue'
-import { setupMock } from '@/mocks'
+import setupMock from '@/mocks'
 
 setupMock()
 

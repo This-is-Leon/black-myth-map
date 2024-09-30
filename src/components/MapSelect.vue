@@ -15,12 +15,12 @@ defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'select', item: Item): void
+  (e: 'select', id: number): void
 }>()
 </script>
 <template>
     <div class="map-select">
-        <div v-for="item in items" class="map-select-item" :class="{cur:item.id === selectedId}" :key="item.id" @click="emit('select', item)">
+        <div v-for="item in items" class="map-select-item" :class="{cur:item.id === selectedId}" :key="item.id" @click="emit('select', item.id)">
             {{ item.regionName }}
         </div>
     </div>

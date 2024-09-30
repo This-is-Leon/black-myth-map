@@ -12,3 +12,10 @@ export interface MapListItem {
     name: string,
     regionName: string
 }
+
+export interface CatalogItem {
+    id: number,
+    name: string,
+    iconUrl: string,
+    landmarksCount: number,
+}

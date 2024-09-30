@@ -21,11 +21,11 @@ export function getMapList() {
     '/api/map/getMapList'
   )
 }
-
-export function getMapInfo(id: number = 48) {
-  return request.get('/api/map/getMapInfo', { params: { id } })
+export function getMapInfo(id:number = 48) {
+    return request.get('/api/map/getMapInfo', {params: {id}})
 }
 
 export function getMarkList(ids: number[] = [3266]) {
   return request.get('/api/mark/getMarkList', { params: { ids: ids.join(',') } })
 }
+
