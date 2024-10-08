@@ -24,6 +24,9 @@ onMounted(() => {
 <template>
     <div class="scollbar-view">
         <div class="filter-container">
+            <div class="navigator-logo">
+                <img src="@/assets/logo.png" alt="logo">
+            </div>
             <map-select :items="commonStore.mapList" :selected-id="commonStore.mapId" @select="commonStore.changeMapAction($event)" />
             <template v-if="markCatalogGroups">
                 <marker-group v-for="group in markCatalogGroups" :key="group.id" :title="group.groupName" :items="group.landmarkCatalogs"

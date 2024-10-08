@@ -23,13 +23,28 @@ function initMap() {
   // 缩放按钮
   //   mapInstance.renderZoomControl()
   setTimeout(() => {
-    mapInstance.renderMarketLayer(markers.map((item) => item._custom.value) as any)
+    mapInstance.renderMarkers(markers.map((item) => item._custom.value) as any)
   }, 100)
 }
 
 onMounted(() => {
   initMap()
 })
+watch(
+  () => commonStore.markers,
+  (val) => {
+    if (!mapInstance.isInit) {
+      setTimeout(() => {
+        mapInstance.renderMarkers(val)
+        return
+      }, 100)
+    }
+    mapInstance.renderMarkers(val)
+  },
+  {
+    immediate: true
+  }
+)
 
 watch(
   () => commonStore.mapId,

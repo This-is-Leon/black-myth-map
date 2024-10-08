@@ -1,4 +1,5 @@
 import axios from 'axios'
+import type { MarkerItem } from '@/types'
 
 const request = axios.create({
   baseURL: '/',
@@ -25,7 +26,7 @@ export function getMapInfo(id:number = 48) {
     return request.get('/api/map/getMapInfo', {params: {id}})
 }
 
-export function getMarkList(ids: number[] = [3266]) {
-  return request.get('/api/mark/getMarkList', { params: { ids: ids.join(',') } })
+export function getMarkList(ids: number[] = []) {
+  return request.get<unknown, MarkerItem[]>('/api/mark/getMarkList', { params: { ids: ids.join(',') } })
 }
 

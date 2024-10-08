@@ -20,7 +20,7 @@ const TileUrlTempMap = new Map([
 ])
 
 export class MapInstance {
-    public map: L.Map | void = void 0
+    private map: L.Map | void = void 0
 
     private tileLayer: L.TileLayer | void = void 0
     private zoomcontrol: L.Control.Zoom | void = void 0
@@ -36,6 +36,10 @@ export class MapInstance {
     private async loadTemplates() {
         this.markerTmpl = await getMarkerTmpl()
         this.popupTmpl = await getPopupTmpl()
+    }
+
+    get isInit() {
+        return !!this.map
     }
 
     init(target: HTMLElement) {
@@ -74,7 +78,7 @@ export class MapInstance {
         this.zoomcontrol.addTo(this.map)
     }
 
-    renderMarketLayer(marks: MarkerItem[]) {
+    renderMarkers(marks: MarkerItem[]) {
         if(!this.map) return //边界情况处理
 
         this.markerLayer?.clearLayers()
