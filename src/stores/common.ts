@@ -28,6 +28,7 @@ export const useCommonStore = defineStore('common', () => {
     function removeMarkCatalogAction(id: number) {
         selectedMarkCatalogs.value = selectedMarkCatalogs.value.filter(item => item!==id)
         // 触发加载地图标点
+        loadMarkerListAction()
     }
 
        // 选择哪副地图
@@ -41,7 +42,8 @@ export const useCommonStore = defineStore('common', () => {
     }
     // 加载地图图标
     async function loadMarkerListAction() {
-        markers.value = await getMarkList()
+        markers.value = await getMarkList(selectedMarkCatalogs.value)
+        // console.error('getMarker', markers.value);
     }
  
 

@@ -22,9 +22,10 @@ function initMap() {
   mapInstance.renderTile()
   // 缩放按钮
   //   mapInstance.renderZoomControl()
-  setTimeout(() => {
-    mapInstance.renderMarkers(markers.map((item) => item._custom.value) as any)
-  }, 100)
+  //   测试用
+  //   setTimeout(() => {
+  //     mapInstance.renderMarkers(markers.map((item) => item._custom.value) as any)
+  //   }, 100)
 }
 
 onMounted(() => {

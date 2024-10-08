@@ -1,5 +1,4 @@
 import 'leaflet/dist/leaflet.css'
-import axios from 'axios'
 
 import L from 'leaflet'
 import ejs from 'ejs'

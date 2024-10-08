@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { MapListItem } from '@/types'
+// import { useCommonStore } from '@/stores/common'
 
 interface Item {
   id: number
@@ -9,6 +10,8 @@ interface Item {
 
 defineOptions({ name: 'MapSelect' })
 
+// const commonStore = useCommonStore()
+
 defineProps<{
   items: MapListItem[]
   selectedId: number
@@ -17,6 +20,9 @@ defineProps<{
 const emit = defineEmits<{
   (e: 'select', id: number): void
 }>()
+// onMounted(() => {
+//   commonStore.loadMarkerListAction()
+// })
 </script>
 <template>
     <div class="map-select">

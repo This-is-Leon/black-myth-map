@@ -22,10 +22,10 @@ function mockGetMarkerList() {
     mockjs.mock(new RegExp('/api/mark/getMarkList'), 'get', (opts) => {
       const urlParams = new URLSearchParams(opts.url.split('?')[1])
       const ids = urlParams.get('ids')
-  
-      return markData
+      const filterData = markData
         .filter((item) => ids?.split(',')?.includes(item.landmarkCatalogId + ''))
         .map((item) => ({ ...item, iconUrl: _getIcon(item.landmarkCatalogId) ?? '' }))
+      return filterData
     })
   }
   const _iconMap = new Map()
