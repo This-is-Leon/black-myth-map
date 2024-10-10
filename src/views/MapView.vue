@@ -21,7 +21,7 @@ function initMap() {
   // 渲染地图
   mapInstance.renderTile()
   // 缩放按钮
-  //   mapInstance.renderZoomControl()
+  mapInstance.renderZoomControl()
   //   测试用
   //   setTimeout(() => {
   //     mapInstance.renderMarkers(markers.map((item) => item._custom.value) as any)

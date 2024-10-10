@@ -46,7 +46,7 @@ export class MapInstance {
             ...ZOOM_LIMIT,
             crs: L.CRS.Simple,
             zoom: 10, //初始缩放等级
-            zoomControl: true,
+            zoomControl: false,
             attributionControl: false,
             center: L.latLng(-0.5, 0.5),//地图中心点
             maxBounds: L.latLngBounds(L.latLng(0, 0), L.latLng(-1, 1))//地图边界
